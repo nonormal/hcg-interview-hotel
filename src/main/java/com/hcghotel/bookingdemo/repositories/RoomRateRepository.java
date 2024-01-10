@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface RoomRateRepository extends JpaRepository<RoomRate, Long> {
     List<RoomRate> findByRoomTypeIdAndDate(Integer roomTypeId, LocalDate date);
+
+    List<RoomRate> findAvailableRoomRatesByDate(LocalDate date);
 }

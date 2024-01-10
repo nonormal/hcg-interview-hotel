@@ -22,9 +22,6 @@ public class RoomRate {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "currency")
-    private String currency;
-
     @Column(name = "retired")
     private boolean retired;
 
@@ -69,14 +66,6 @@ public class RoomRate {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public boolean isRetired() {

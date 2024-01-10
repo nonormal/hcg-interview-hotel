@@ -1,6 +1,9 @@
 package com.hcghotel.bookingdemo.models;
 
+import com.hcghotel.bookingdemo.persistence.converters.LocalDateAttributeConverter;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name = "room")
@@ -13,11 +16,11 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;
-
-    private Date date;
+    @Convert(converter = LocalDateAttributeConverter.class)
+    private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "status_id")
+    @JoinColumn(name = "status")
     private RoomStatus status;
 
     private boolean retired;
@@ -42,11 +45,11 @@ public class Room {
         this.roomType = roomType;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
