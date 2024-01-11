@@ -1,6 +1,8 @@
 package com.hcghotel.bookingdemo.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 public class BookingRequestDTO {
     private Long roomType;
@@ -8,7 +10,10 @@ public class BookingRequestDTO {
     private String bookingNumber;
     private Double price;
     private boolean retired;
-    private Long guests;
+    private List<GuestDTO> guests;
+
+    private LocalDate arrivalDate;
+    private LocalDate departureDate;
 
     public BookingRequestDTO() {
     }
@@ -53,11 +58,19 @@ public class BookingRequestDTO {
         this.retired = retired;
     }
 
-    public Long getGuests() {
+    public List<GuestDTO> getGuests() {
         return guests;
     }
 
-    public void setGuests(Long guests) {
+    public void setGuests(List<GuestDTO> guests) {
         this.guests = guests;
+    }
+
+    public LocalDate getArrivalDate() {
+       return this.arrivalDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return this.arrivalDate;
     }
 }

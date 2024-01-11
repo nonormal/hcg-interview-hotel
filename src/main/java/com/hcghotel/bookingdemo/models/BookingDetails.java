@@ -1,7 +1,9 @@
 package com.hcghotel.bookingdemo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 @Entity (name = "booking_details")
 public class BookingDetails {
@@ -14,8 +16,8 @@ public class BookingDetails {
     @JoinColumn(name = "booking_id")
     private Booking booking;
 
-    private Date checkInDate;
-    private Date checkOutDate;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private boolean retired;
 
     public BookingDetails() {
@@ -39,19 +41,19 @@ public class BookingDetails {
         this.booking = booking;
     }
 
-    public Date getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(Date checkInDate) {
+    public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public Date getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(Date checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 

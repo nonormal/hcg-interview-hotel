@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity (name = "booking")
@@ -34,7 +35,7 @@ public class Booking {
     private List<Guest> guests;
     @JsonIgnoreProperties("booking")
     @OneToMany(mappedBy = "booking")
-    private List<BookingDetails> bookingDetails;
+    private List<BookingDetails> bookingDetailsList = new ArrayList<>();
 
     public Booking() {
     }
@@ -92,11 +93,11 @@ public class Booking {
     }
 
     public List<BookingDetails> getBookingDetails() {
-        return bookingDetails;
+        return bookingDetailsList;
     }
 
     public void setBookingDetails(List<BookingDetails> bookingDetails) {
-        this.bookingDetails = bookingDetails;
+        this.bookingDetailsList = bookingDetails;
     }
 
     public List<Guest> getGuests() {
@@ -105,5 +106,20 @@ public class Booking {
 
     public void setGuests(List<Guest> guests) {
         this.guests = guests;
+    }
+
+    public void addBookingDetails(BookingDetails bookingDetails) {
+        bookingDetailsList.add(bookingDetails);
+        bookingDetails.setBooking(this);
+    }
+    public List<BookingDetails> getBookingDetailsList() {
+        return bookingDetailsList;
+    }
+
+    public void setBookingDetailsList(List<BookingDetails> bookingDetailsList) {
+        this.bookingDetailsList = bookingDetailsList;
+        for (BookingDetails bookingDetails : bookingDetailsList) {
+            bookingDetails.setBooking(this);
+        }
     }
 }
